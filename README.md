@@ -59,19 +59,21 @@ About 2 hours
 ## Clone this repo (fullcircle23/catapult-server-macos)
 
 ```console
-cd ~/\&lt;local-root\&gt;git clone https://github.com/fullcircle23/catapult-server-macos.gitcd catapult-server-macos
+git clone https://github.com/fullcircle23/catapult-server-macos.git
+cd catapult-server-macos
 ```
 
 ## Clone nemtech/catapult-server repo
 
 ```console
-cd ~/\&lt;local-root\&gt;git clone https://github.com/nemtech/catapult-server.gitcd catapult-server
+git clone https://github.com/nemtech/catapult-server.git
+cd catapult-server
 ```
 
 ## Copy macOS build script from fullcircle23/catapult-server-macos to nemtech/catapult-server
 
 ```console
-cp ~/\&lt;local-root\&gt;/fullcircle23/catapult-server-macos/catapult\_server\_build.sh .
+cp ~/{path to}/fullcircle23/catapult-server-macos/catapult\_server\_build.sh .
 ```
 
 ## Execute the macOS build script from inside nemtech catapult-server directory
@@ -97,7 +99,8 @@ Error (i)
 If you get missing Boost error like the above then you&#39;ll need to install the missing Boost libraries by running install-boost-lib.sh script in ~/\&lt;local-root\&gt;/catapult-server/\_build\_dependencies/boost/1.65.1/lib. First copy the file from this repo and review and update the script if necessary, before running it. You may need to use sudo.
 
 ```console
-cd ~/\&lt;local-root\&gt;/catapult-server/\_build\_dependencies/boost/1.65.1/libcp ~/\&lt;local-root\&gt;/fullcircle23/catapult-server-macos/install-boost-lib.sh ../install-boost-lib.sh
+cd ~/{path to}/catapult-server/\_build\_dependencies/boost/1.65.1/lib
+cp ~/{path to}/fullcircle23/catapult-server-macos/install-boost-lib.sh ../install-boost-lib.sh
 ```
 
 Now try running catapult.server again. If you are still getting similar missing library errors then you&#39;ll need to find that library and copy it to the appropriate location as specified in the error line. In many cases, the required library may already exists but under a different name and you would only need to create a symbolic link to it.
@@ -119,19 +122,30 @@ Once catapult.server is able to run without complaining about some missing libra
 1. Working directory
 
 ```console
-cdcatapult-servermkdir\_buildcd\_build
+cd catapult-server
+mkdir\_build
+cd\_build
 ```
 
 2. Copy configuration files
 
 ```console
-rm -r resources cp -r ../resources .cp ../tools/nemgen/resources/mijin-test.properties resources/
+rm -r resources 
+cp -r ../resources .
+cp ../tools/nemgen/resources/mijin-test.properties resources/
 ```
 
 3. Generate 10 main accounts. You can generate less or more depending on your needs and resource limitations by changing the -g option value.
 
 ```console
-cd catapult-server/\_build/bin ./catapult.tools.address -g 10 -n mijin-test \&gt; ../catapult.address.txt  head -n11 ../catapult.address.txt --- generating 10 keys --- private key: 8A28DA1BFB2E3BD71F063478F54D9AB80B8EDD71781488F20515434A65E273D4 public key: B0D9E3C35AB3959E272F5E86E31495B9AE869AFB2902112F3D67C5F07F56ECAA address (mijin-test): SCXD5QAN3W3FDZ5XQOWX7B7QF6AQOQWE3RJT6GBP 
+cd catapult-server/\_build/bin 
+./catapult.tools.address -g 10 -n mijin-test \&gt; ../catapult.address.txt  
+head -n11 ../catapult.address.txt 
+
+--- generating 10 keys --- 
+private key: 8A28DA1BFB2E3BD71F063478F54D9AB80B8EDD71781488F20515434A65E273D4 
+public key: B0D9E3C35AB3959E272F5E86E31495B9AE869AFB2902112F3D67C5F07F56ECAA 
+address (mijin-test): SCXD5QAN3W3FDZ5XQOWX7B7QF6AQOQWE3RJT6GBP 
 ```
 
 4. Edit the configuration file of the Nemesis block
@@ -143,7 +157,19 @@ vi ../resources/mijin-test.properties
 5. Replace the lines marked in red with the green lines, as shown in the figure.
 
 ```console
-[cpp]-cppFileHeader = ../HEADER.inc+cppFileHeader = ../../HEADER.inc [output] -cppFile = ../tests/test/core/mocks/MockMemoryBasedStorage\_data.h+cppFile = ../../tests/test/core/mocks/MockMemoryBasedStorage\_data.h  [distribution\&gt;nem:xem]  -SAAA244WMCB2JXGNQTQHQOS45TGBFF4V2MJBVOUI = 409&#39;090&#39;909&#39;000&#39;000         +SCSBPEXYDODOFC4LHR27KDVKRELXMRERKO4ZPDYV = 409&#39;090&#39;909&#39;000&#39;000 SAAA34PEDKJHKIHGVXV3BSKBSQPPQDDMO2ATWMY3 = 409&#39;090&#39;909&#39;000&#39;000 SAAA467G4ZDNOEGLNXLGWUAXZKC6VAES74J7N34D = 409&#39;090&#39;909&#39;000&#39;000 SAAA57DREOPYKUFX4OG7IQXKITMBWKD6KXTVBBQP = 409&#39;090&#39;909&#39;000&#39;000 
+[cpp]
+-cppFileHeader = ../HEADER.inc
++cppFileHeader = ../../HEADER.inc 
+
+[output] 
+-cppFile = ../tests/test/core/mocks/MockMemoryBasedStorage\_data.h
++cppFile = ../../tests/test/core/mocks/MockMemoryBasedStorage\_data.h  
+
+[distribution\&gt;nem:xem]  
+-SAAA244WMCB2JXGNQTQHQOS45TGBFF4V2MJBVOUI = 409&#39;090&#39;909&#39;000&#39;000         +SCSBPEXYDODOFC4LHR27KDVKRELXMRERKO4ZPDYV = 409&#39;090&#39;909&#39;000&#39;000 
+SAAA34PEDKJHKIHGVXV3BSKBSQPPQDDMO2ATWMY3 = 409&#39;090&#39;909&#39;000&#39;000 
+SAAA467G4ZDNOEGLNXLGWUAXZKC6VAES74J7N34D = 409&#39;090&#39;909&#39;000&#39;000 
+SAAA57DREOPYKUFX4OG7IQXKITMBWKD6KXTVBBQP = 409&#39;090&#39;909&#39;000&#39;000 
 ```
 
 Note: The line SCSBPEXYDODOFC4LHR27KDVKRELXMRERKO4ZPDYV corresponds to the first account in the **catapult.address.txt** file, as shown in Step 3.
@@ -151,7 +177,10 @@ Note: The line SCSBPEXYDODOFC4LHR27KDVKRELXMRERKO4ZPDYV corresponds to the first
 6. Create sub-directories in \_build
 
 ```console
-mkdir -p seed/mijin-test/00000 dd if=/dev/zero of=seed/mijin-test/00000/hashes.dat bs=1 count=64 mkdir data tmp cd tmp 
+mkdir -p seed/mijin-test/00000 
+dd if=/dev/zero of=seed/mijin-test/00000/hashes.dat bs=1 count=64 
+mkdir data tmp 
+cd tmp 
 ```
 
 7. Generate the Nemesis block
@@ -160,12 +189,13 @@ mkdir -p seed/mijin-test/00000 dd if=/dev/zero of=seed/mijin-test/00000/hashes.d
 ../bin/catapult.tools.nemgen --nemesisProperties ../resources/mijin-test.properties
 ```
 
-Tip: To have both stderr and output _displayed on the console _ **and** _ in a file_:
+Tip: To have both stderr and output displayed on the console *and* in a file:
 
         < SomeCommand 2\&gt;&amp;1 | tee SomeFile.txt >
 
 ```console
-cd .. cp -r seed/mijin-test/\* data/ 
+cd .. 
+cp -r seed/mijin-test/\* data/ 
 ```
 
 8. Start the Catapult server
