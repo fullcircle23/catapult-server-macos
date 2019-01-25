@@ -91,7 +91,7 @@ I encountered the below 2 errors and have documented a resolution/workaround.
 
 Error (i)
 ```
-… No rule to make target &#39;/usr/local/lib/libboost\_\&lt;blah\&gt;&#39;, needed by &#39;catapult.server&#39;.
+... No rule to make target &#39;/usr/local/lib/libboost_<blah>, needed by 'catapult.server'.
 ```
 
 If you get missing Boost error like the above then you&#39;ll need to install the missing Boost libraries by running install-boost-lib.sh script in ~/\&lt;local-root\&gt;/catapult-server/\_build\_dependencies/boost/1.65.1/lib. First copy the file from this repo and review and update the script if necessary, before running it. You may need to use sudo.
@@ -107,7 +107,7 @@ Now try running catapult.server again. If you are still getting similar missing 
 Error (ii)
 
 ```
-… Missing libidn2.0.dylib library
+... Missing libidn2.0.dylib library
 ```
 
 If you get a &quot;missing libidn2.0.dylib library&quot; error and you find that libidn2.4.dylib exists, you could try creating a symbolic link as follows:
@@ -140,7 +140,7 @@ cp ../tools/nemgen/resources/mijin-test.properties resources/
 
 ```console
 cd catapult-server/_build/bin 
-./catapult.tools.address -g 10 -n mijin-test \&gt; ../catapult.address.txt  
+./catapult.tools.address -g 10 -n mijin-test > ../catapult.address.txt  
 head -n11 ../catapult.address.txt 
 
 --- generating 10 keys --- 
@@ -194,7 +194,7 @@ cd tmp
 Tip: To have both stderr and output displayed on the console **and** in a file:
 
 ```
-SomeCommand 2\&gt;&amp;1 | tee SomeFile.txt
+SomeCommand 2>&1 | tee SomeFile.txt
 ```
 
 ```console
