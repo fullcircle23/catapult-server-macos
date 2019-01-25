@@ -11,9 +11,9 @@ I hope others find this documentation to build and run Catapult Server on macOS 
 
 1. The catapult build script used in this repo is based on
 
-# &quot;add build shell like eosio\_build.sh (for mac) #7&quot; by t10471
+&quot;add build shell like eosio\_build.sh (for mac) #7&quot; by t10471
 
-# [https://github.com/nemtech/catapult-server/pull/7](https://github.com/nemtech/catapult-server/pull/7)
+[https://github.com/nemtech/catapult-server/pull/7](https://github.com/nemtech/catapult-server/pull/7)
 
 2. Nemesis block creation steps in this doc is based on ISARQ [isarq.com](http://www.isarq.com)
 
