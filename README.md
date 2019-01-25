@@ -1,11 +1,11 @@
 # catapult-server-macos
 Instructions to Build and Run NEMTech Catapult Server on macOS
 
-# Catapult Server – How to Build and Run on macOS
+# How to Build and Run NEM Catapult Server on macOS
 
 ## Overview
 
-I hope others find this documentation to build and run Catapult Server on macOS useful.
+I hope others find this documentation to build and run NEM Catapult Server on macOS useful.
 
 ## Credits
 
@@ -17,7 +17,7 @@ I hope others find this documentation to build and run Catapult Server on macOS 
  &quot;Creation of the Nemesis Block in Slackware&quot;
  [http://isarq.com/wp-content/uploads/2018/06/catapult-episode-2-nemesis-english.pdf](http://isarq.com/wp-content/uploads/2018/06/catapult-episode-2-nemesis-english.pdf)
 
-## NEM Catapult Server
+## NEM Catapult Server a.k.a. NEM2
 
 [https://github.com/nemtech/catapult-server](https://github.com/nemtech/catapult-server)
 
