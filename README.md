@@ -69,7 +69,7 @@ cd catapult-server
 ## Copy macOS build script from fullcircle23/catapult-server-macos to nemtech/catapult-server
 
 ```console
-cp ~/{path to}/fullcircle23/catapult-server-macos/catapult_server_build.sh .
+cp ~/{path-to}/fullcircle23/catapult-server-macos/catapult_server_build.sh .
 ```
 
 ## Execute the macOS build script from inside nemtech catapult-server directory
@@ -91,14 +91,14 @@ I encountered the below 2 errors and have documented a resolution/workaround.
 
 Error (i)
 ```
-... No rule to make target &#39;/usr/local/lib/libboost_<blah>, needed by 'catapult.server'.
+... No rule to make target /usr/local/lib/libboost_<blah>, needed by 'catapult.server'.
 ```
 
-If you get missing Boost error like the above then you&#39;ll need to install the missing Boost libraries by running install-boost-lib.sh script in ~/\&lt;local-root\&gt;/catapult-server/\_build\_dependencies/boost/1.65.1/lib. First copy the file from this repo and review and update the script if necessary, before running it. You may need to use sudo.
+If you get missing Boost error like the above then you&#39;ll need to install the missing Boost libraries by running install-boost-lib.sh script in ~/{path-to}/catapult-server/\_build\_dependencies/boost/1.65.1/lib. First copy the file from this repo and review and update the script if necessary, before running it. You may need to use sudo.
 
 ```console
-cd ~/{path to}/catapult-server/_build_dependencies/boost/1.65.1/lib
-cp ~/{path to}/fullcircle23/catapult-server-macos/install-boost-lib.sh .
+cd ~/{path-to}/catapult-server/_build_dependencies/boost/1.65.1/lib
+cp ~/{path-to}/fullcircle23/catapult-server-macos/install-boost-lib.sh .
 ./install-boost-lib.sh
 ```
 
@@ -158,20 +158,20 @@ vi ../resources/mijin-test.properties
 5. Replace the - lines with the + lines, as shown in the figure.
 
 ```console
-[cpp]
+ [cpp]
 -cppFileHeader = ../HEADER.inc
 +cppFileHeader = ../../HEADER.inc 
 
-[output] 
--cppFile = ../tests/test/core/mocks/MockMemoryBasedStorage\_data.h
-+cppFile = ../../tests/test/core/mocks/MockMemoryBasedStorage\_data.h  
+ [output] 
+-cppFile = ../tests/test/core/mocks/MockMemoryBasedStorage_data.h
++cppFile = ../../tests/test/core/mocks/MockMemoryBasedStorage_data.h  
 
-[distribution>nem:xem]  
--SAAA244WMCB2JXGNQTQHQOS45TGBFF4V2MJBVOUI = 409&#39;090&#39;909&#39;000&#39;000         
-+SCSBPEXYDODOFC4LHR27KDVKRELXMRERKO4ZPDYV = 409&#39;090&#39;909&#39;000&#39;000 
- SAAA34PEDKJHKIHGVXV3BSKBSQPPQDDMO2ATWMY3 = 409&#39;090&#39;909&#39;000&#39;000 
- SAAA467G4ZDNOEGLNXLGWUAXZKC6VAES74J7N34D = 409&#39;090&#39;909&#39;000&#39;000 
- SAAA57DREOPYKUFX4OG7IQXKITMBWKD6KXTVBBQP = 409&#39;090&#39;909&#39;000&#39;000 
+ [distribution>nem:xem]  
+-SAAA244WMCB2JXGNQTQHQOS45TGBFF4V2MJBVOUI = 409'090'909'000'000         
++SCSBPEXYDODOFC4LHR27KDVKRELXMRERKO4ZPDYV = 409'090'909'000'000 
+ SAAA34PEDKJHKIHGVXV3BSKBSQPPQDDMO2ATWMY3 = 409'090'909'000'000 
+ SAAA467G4ZDNOEGLNXLGWUAXZKC6VAES74J7N34D = 409'090'909'000'000 
+ SAAA57DREOPYKUFX4OG7IQXKITMBWKD6KXTVBBQP = 409'090'909'000'000 
 ```
 
 Note: The line SCSBPEXYDODOFC4LHR27KDVKRELXMRERKO4ZPDYV corresponds to the first account in the **catapult.address.txt** file, as shown in Step 3.
@@ -205,7 +205,8 @@ cp -r seed/mijin-test/* data/
 8. Start the Catapult server
 
 ```console
-cd bin &amp;&amp; ./catapult.server 
+cd bin
+./catapult.server 
 ```
 
 
