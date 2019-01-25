@@ -10,16 +10,12 @@ I hope others find this documentation to build and run Catapult Server on macOS 
 ## Credits
 
 1. The catapult build script used in this repo is based on
-
-&quot;add build shell like eosio\_build.sh (for mac) #7&quot; by t10471
-
-[https://github.com/nemtech/catapult-server/pull/7](https://github.com/nemtech/catapult-server/pull/7)
+> &quot;add build shell like eosio\_build.sh (for mac) #7&quot; by t10471
+> [https://github.com/nemtech/catapult-server/pull/7](https://github.com/nemtech/catapult-server/pull/7)
 
 2. Nemesis block creation steps in this doc is based on ISARQ [isarq.com](http://www.isarq.com)
-
-&quot;Creation of the Nemesis Block in Slackware&quot;
-
-[http://isarq.com/wp-content/uploads/2018/06/catapult-episode-2-nemesis-english.pdf](http://isarq.com/wp-content/uploads/2018/06/catapult-episode-2-nemesis-english.pdf)
+> &quot;Creation of the Nemesis Block in Slackware&quot;
+> [http://isarq.com/wp-content/uploads/2018/06/catapult-episode-2-nemesis-english.pdf](http://isarq.com/wp-content/uploads/2018/06/catapult-episode-2-nemesis-english.pdf)
 
 ## NEM Catapult Server
 
@@ -73,13 +69,13 @@ cd catapult-server
 ## Copy macOS build script from fullcircle23/catapult-server-macos to nemtech/catapult-server
 
 ```console
-cp ~/{path to}/fullcircle23/catapult-server-macos/catapult\_server\_build.sh .
+cp ~/{path to}/fullcircle23/catapult-server-macos/catapult_server_build.sh .
 ```
 
 ## Execute the macOS build script from inside nemtech catapult-server directory
 
 ```console
-./catapult\_server\_build.sh
+./catapult_server_build.sh
 ```
 
 ## Post Build Steps
@@ -87,7 +83,8 @@ cp ~/{path to}/fullcircle23/catapult-server-macos/catapult\_server\_build.sh .
 Try running catapult.server as follows:
 
 ```console
-cd ./\_build/bin./catapult.server
+cd ./_build/bin
+./catapult.server
 ```
 
 I encountered the below 2 errors and have documented a resolution/workaround.
@@ -99,15 +96,16 @@ Error (i)
 If you get missing Boost error like the above then you&#39;ll need to install the missing Boost libraries by running install-boost-lib.sh script in ~/\&lt;local-root\&gt;/catapult-server/\_build\_dependencies/boost/1.65.1/lib. First copy the file from this repo and review and update the script if necessary, before running it. You may need to use sudo.
 
 ```console
-cd ~/{path to}/catapult-server/\_build\_dependencies/boost/1.65.1/lib
-cp ~/{path to}/fullcircle23/catapult-server-macos/install-boost-lib.sh ../install-boost-lib.sh
+cd ~/{path to}/catapult-server/_build_dependencies/boost/1.65.1/lib
+cp ~/{path to}/fullcircle23/catapult-server-macos/install-boost-lib.sh .
+./install-boost-lib.sh
 ```
 
 Now try running catapult.server again. If you are still getting similar missing library errors then you&#39;ll need to find that library and copy it to the appropriate location as specified in the error line. In many cases, the required library may already exists but under a different name and you would only need to create a symbolic link to it.
 
 Error (ii)
 
-< … Missing libidn2.0.dylib library >
+> … Missing libidn2.0.dylib library
 
 If you get a &quot;missing libidn2.0.dylib library&quot; error and you find that libidn2.4.dylib exists, you could try creating a symbolic link as follows:
 
@@ -123,8 +121,8 @@ Once catapult.server is able to run without complaining about some missing libra
 
 ```console
 cd catapult-server
-mkdir\_build
-cd\_build
+mkdir _build
+cd _build
 ```
 
 2. Copy configuration files
@@ -138,7 +136,7 @@ cp ../tools/nemgen/resources/mijin-test.properties resources/
 3. Generate 10 main accounts. You can generate less or more depending on your needs and resource limitations by changing the -g option value.
 
 ```console
-cd catapult-server/\_build/bin 
+cd catapult-server/_build/bin 
 ./catapult.tools.address -g 10 -n mijin-test \&gt; ../catapult.address.txt  
 head -n11 ../catapult.address.txt 
 
@@ -154,7 +152,7 @@ address (mijin-test): SCXD5QAN3W3FDZ5XQOWX7B7QF6AQOQWE3RJT6GBP
 vi ../resources/mijin-test.properties
 ```
 
-5. Replace the lines marked in red with the green lines, as shown in the figure.
+5. Replace the - lines with the + lines, as shown in the figure.
 
 ```console
 [cpp]
@@ -165,11 +163,12 @@ vi ../resources/mijin-test.properties
 -cppFile = ../tests/test/core/mocks/MockMemoryBasedStorage\_data.h
 +cppFile = ../../tests/test/core/mocks/MockMemoryBasedStorage\_data.h  
 
-[distribution\&gt;nem:xem]  
--SAAA244WMCB2JXGNQTQHQOS45TGBFF4V2MJBVOUI = 409&#39;090&#39;909&#39;000&#39;000         +SCSBPEXYDODOFC4LHR27KDVKRELXMRERKO4ZPDYV = 409&#39;090&#39;909&#39;000&#39;000 
-SAAA34PEDKJHKIHGVXV3BSKBSQPPQDDMO2ATWMY3 = 409&#39;090&#39;909&#39;000&#39;000 
-SAAA467G4ZDNOEGLNXLGWUAXZKC6VAES74J7N34D = 409&#39;090&#39;909&#39;000&#39;000 
-SAAA57DREOPYKUFX4OG7IQXKITMBWKD6KXTVBBQP = 409&#39;090&#39;909&#39;000&#39;000 
+[distribution>nem:xem]  
+-SAAA244WMCB2JXGNQTQHQOS45TGBFF4V2MJBVOUI = 409&#39;090&#39;909&#39;000&#39;000         
++SCSBPEXYDODOFC4LHR27KDVKRELXMRERKO4ZPDYV = 409&#39;090&#39;909&#39;000&#39;000 
+ SAAA34PEDKJHKIHGVXV3BSKBSQPPQDDMO2ATWMY3 = 409&#39;090&#39;909&#39;000&#39;000 
+ SAAA467G4ZDNOEGLNXLGWUAXZKC6VAES74J7N34D = 409&#39;090&#39;909&#39;000&#39;000 
+ SAAA57DREOPYKUFX4OG7IQXKITMBWKD6KXTVBBQP = 409&#39;090&#39;909&#39;000&#39;000 
 ```
 
 Note: The line SCSBPEXYDODOFC4LHR27KDVKRELXMRERKO4ZPDYV corresponds to the first account in the **catapult.address.txt** file, as shown in Step 3.
@@ -191,11 +190,11 @@ cd tmp
 
 Tip: To have both stderr and output displayed on the console *and* in a file:
 
-        < SomeCommand 2\&gt;&amp;1 | tee SomeFile.txt >
+> SomeCommand 2\&gt;&amp;1 | tee SomeFile.txt 
 
 ```console
 cd .. 
-cp -r seed/mijin-test/\* data/ 
+cp -r seed/mijin-test/* data/ 
 ```
 
 8. Start the Catapult server
